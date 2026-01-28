@@ -20,26 +20,33 @@
             enable = true;
             device = "nodev";
             efiSupport = true;
-            useOSProber = false;
+            useOSProber = true;
           };
 
           networking.hostName = "nixos";
           networking.networkmanager.enable = true;
           networking.firewall.enable = true;
+	        virtualisation.virtualbox.guest.enable = false;
 
           i18n.defaultLocale = "en_US.UTF-8";
+	  i18n.consoleKeyMap = "br-abnt2";
           i18n.extraLocaleSettings = {
             LC_TIME = "pt_BR.UTF-8";
             LC_MONETARY = "pt_BR.UTF-8";
           };
 
           time.timeZone = "UTC";
+	  services.xserver.xkb = {
+	  	layout = "br";
+	  	variant = "abnt2";
+
+	        };
 
           security.sudo.enable = true;
 
           users.users.whisper = {
             isNormalUser = true;
-            extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
+            extraGroups = [ "wheel" "networkmanager" "video" "audio" "vboxsf" ];
             shell = pkgs.zsh;
             hashedPassword = "$6$lIu3x2zxsbRh8uXC$tCs.auPpaCnl6jNbql3AZFjx8hqGVKolLLTMo/y4eBCcJ2bZW37RggQ7NQdIKDxHVc5Hq63ZjsYR2hwU0UzGj/";
           };
@@ -53,7 +60,6 @@
             enable32Bit = true;
           };
 
-          sound.enable = true;
           services.pipewire = {
             enable = true;
             alsa.enable = true;
@@ -81,6 +87,9 @@
             grim
             slurp
             alacritty
+	          wofi
+	          waybar
+	          hyprpaper
           ];
 
           system.stateVersion = "24.11";
