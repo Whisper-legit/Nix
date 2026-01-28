@@ -26,7 +26,6 @@
           networking.hostName = "nixos";
           networking.networkmanager.enable = true;
           networking.firewall.enable = true;
-	        virtualisation.virtualbox.guest.enable = false;
 
           i18n.defaultLocale = "en_US.UTF-8";
 	  i18n.consoleKeyMap = "br-abnt2";
@@ -87,9 +86,9 @@
             grim
             slurp
             alacritty
-	          wofi
-	          waybar
-	          hyprpaper
+	        wofi
+	        waybar
+	        hyprpaper
           ];
 
           system.stateVersion = "24.11";
